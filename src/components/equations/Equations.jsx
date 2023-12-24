@@ -1,28 +1,44 @@
 import {useState} from "react";
+import PropTypes from "prop-types";
+import ResponseModel from "../../interfaces/response";
 import "./Equations.css";
 
-function Equations(){
+Equations.propTypes = {
+    setResponse:PropTypes.func
+}
+
+function Equations({setResponse}){
     function calculateEquation(event){
         event.preventDefault();
         const a = parseFloat(values.a);
         const b = parseFloat(values.b);
         const c = parseFloat(values.c);
         if(a === 0){
-
-            console.error("The parameter named a is invalid.");
-
+            const response = new ResponseModel();
+            response.message = "The parameter named a is invalid.";
+            response.check = false;
+            setResponse(response);
         }else{
             const delta = (b * b) - (4 * a * c);
             if(delta < 0){
-
-                console.error("The solutions don't exist in the real numbers.");
-
+                const response = new ResponseModel();
+                response.message = "The solutions don't exist in the real numbers.";
+                response.check = false;
+                setResponse(response);
             }else{
                 const x1 = (-b + Math.sqrt(delta))/(2 * a);
                 const x2 = (-b - Math.sqrt(delta))/(2 * a);
-
-                console.log(x1,x2);
-
+                if(x1 === x2){
+                    const response = new ResponseModel();
+                    response.message = "There is one solution: " + x1;
+                    response.check = true;
+                    setResponse(response);
+                }else{
+                    const response = new ResponseModel();
+                    response.message = "There are two solutions: " + x1 + " " + x2;
+                    response.check = true;
+                    setResponse(response);
+                }
             }
         }
     }
@@ -46,7 +62,7 @@ function Equations(){
                 <input type="number" name="b" id="b" value={values.b} onChange={changeValues}/>
                 <label htmlFor="c">C:</label>
                 <input type="number" name="c" id="c" value={values.c} onChange={changeValues}/>
-                <input type="submit" value="Calculate now" />
+                <input type="submit" value="Calculate" />
             </form>
         </div>
     );
