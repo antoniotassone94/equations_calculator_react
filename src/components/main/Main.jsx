@@ -1,10 +1,13 @@
+import Equations from "../equations/Equations";
+import Navbar from "../navbar/Navbar";
 import "./Main.css";
 
 function Main(){
     return (
-        <>
-            Hello world.
-        </>
+        <div id="main-container">
+            <Navbar></Navbar>
+            <Equations></Equations>
+        </div>
     );
 }
 
