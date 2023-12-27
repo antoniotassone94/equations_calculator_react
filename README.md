@@ -4,7 +4,7 @@
 
 **Version:** 1.0.0
 
-This application permit of calculate the solutions of the simple mathematical equations. It is built in react+vite and the code is open source and free downloadable. The application is serverless and the frontend is built with react.
+This application permit of calculate the solutions of the simple mathematical equations. It is built in react+vite and the code is open source and free downloadable. The application is serverless, so don't exist any backend interface.
 
 How to use the application? Follow these steps:
 1) open the shell of the system
